@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .api.v1.urls import router as url_router
+from .api.v1.analytics import router as analytics_router
 
 app = FastAPI(
     title="URL Shortener",
@@ -22,11 +23,13 @@ app.add_middleware(
 
 # Подключаем роутеры
 app.include_router(url_router)
+app.include_router(analytics_router) 
 
 @app.on_event("startup")
 async def startup():
     """Действия при запуске приложения"""
-    pass
+    from .services.security import rate_limiter
+    await rate_limiter.init_redis()
 
 @app.on_event("shutdown")
 async def shutdown():
