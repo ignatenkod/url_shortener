@@ -32,3 +32,9 @@ async def startup():
 async def shutdown():
     """Действия при остановке приложения"""
     pass
+
+@app.on_event("shutdown")
+async def shutdown():
+    """Действия при остановке приложения"""
+    from ..utils.geoip import GeoIPService
+    GeoIPService.close()
