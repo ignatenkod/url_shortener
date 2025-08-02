@@ -78,10 +78,6 @@ uvicorn src.url_shortener.main:app --host 0.0.0.0 --port 80
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
-## Примеры использования
-
-Смотрите [examples/example_usage.py](examples/example_usage.py) для примеров работы с API.
-
 ## Тестирование
 
 Для запуска тестов:
